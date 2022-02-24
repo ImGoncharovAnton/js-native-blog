@@ -68,7 +68,7 @@ async function linkClickHandler(e) { // 201
 
 
 function renderList(list = []) { // 194
-    if (list.length) { // 195
+    if (list && list.length) { // 195
         // 198
         return `
         <ul>
