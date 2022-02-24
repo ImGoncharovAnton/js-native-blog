@@ -64,23 +64,27 @@ function buttonHandler(e) { // 175
     // console.log(e);
     const $el = e.target; // 176
     const id = $el.dataset.id // 177
+    const title = $el.dataset.title // добавляем заголовок к вкладке избранное
 
     if (id) { // 178
         // console.log(id);
         let favorites = JSON.parse(localStorage.getItem('favorites')) || []; // 179
+        const candidate = favorites.find(p => p.id === id); // Создаем переменную, чтоб проверить, содержит ли массив favorites какой либо id
         // console.log(favorites);
-        if (favorites.includes(id)) { // 180
+        // if (favorites.includes(id)) { // 180 
+            if (candidate) { // Заменяем проверку на новую переменную
             // удалить элемент
             $el.textContent = 'Сохранить'; // 184
             $el.classList.add('button-primary'); // 185
             $el.classList.remove('button-danger'); // 186
-            favorites = favorites.filter(fId => fId !== id) // 182
+            // favorites = favorites.filter(fId => fId !== id) // 182
+            favorites = favorites.filter(p => p.id !== id) // Заменяем фильтр на новый
         } else {
             // добавить элемент
             $el.classList.remove('button-primary'); // 187
             $el.classList.add('button-danger'); // 188
             $el.textContent = 'Удалить';
-            favorites.push(id); // 181
+            favorites.push({id, title}); // 181 // Добавляем title для отображения заголовка в Избранное
         }
 
         localStorage.setItem('favorites', JSON.stringify(favorites)); // 183

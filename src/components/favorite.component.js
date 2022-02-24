@@ -30,7 +30,8 @@ async function linkClickHandler(e) { // 201
     // console.log(e.target.textContent);
     this.$el.innerHTML = '';  // 217
     this.loader.show(); // 213
-    const postId = e.target.textContent; // 211
+    // const postId = e.target.textContent; // 211
+    const postId = e.target.dataset.id; // меняем на dataset.id, чтобы привязаться к id, а не текстовому контенту
 
     const post =  await apiService.fetchPostById(postId) // 212
     // console.log(post);
@@ -72,11 +73,11 @@ function renderList(list = []) { // 194
         // 198
         return `
         <ul>
-            ${list.map(i => `<li><a href="#" class="js-link">${i}</a></li>`).join(' ')}
+            ${list.map(i => `<li><a href="#" class="js-link" data-id="${i.id}">${i.title}</a></li>`).join(' ')}
         </ul>
         `
     }
-
+    // Добавлен data-id для того, чтобы ссылка корректно работала, и отображала пост, так как по заголовку, который был добавлен чуть раньше, выдает ошибку
     return `<h3 class="center">Вы пока не добавили ничего</h3>` // 196
 
 }
