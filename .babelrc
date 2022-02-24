@@ -1,0 +1,16 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "edge": "last 5 versions",
+                    "firefox": "last 5 versions",
+                    "chrome": "last 5 versions",
+                    "safari": "last 5 versions"
+                },
+                "useBuiltIns": "usage"
+            }
+        ]
+    ]
+}
